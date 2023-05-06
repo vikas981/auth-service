@@ -57,8 +57,8 @@ public class AuthServiceImpl implements AuthService {
         userRepresentation.setEmail(userRequestDTO.getEmail());
         userRepresentation.setEmailVerified(false);
         RealmResource realmResource = keycloakHelper.getRealmResource();
-        try{
-        Response response = userResource.create(userRepresentation);
+        try(
+        Response response = userResource.create(userRepresentation)){
             log.info("Response |  Status: {} | Status Info: {}", response.getStatus(), response.getMetadata());
             if (response.getStatus() == 201) {
                 String userId = CreatedResponseUtil.getCreatedId(response);

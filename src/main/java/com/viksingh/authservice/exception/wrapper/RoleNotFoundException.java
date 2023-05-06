@@ -1,9 +1,7 @@
 package com.viksingh.authservice.exception.wrapper;
 
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 
-@Data
 public class RoleNotFoundException extends RuntimeException {
     private String message;
     private HttpStatus statusCode;
@@ -27,5 +25,14 @@ public class RoleNotFoundException extends RuntimeException {
 
     protected RoleNotFoundException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public HttpStatus getStatusCode() {
+        return statusCode;
     }
 }
